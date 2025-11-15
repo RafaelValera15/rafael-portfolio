@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="css/main-styles.css" />
+    <link rel="stylesheet" href="projects-sect.html" />
+    <title>Rafael Valera's Project</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <header>
+      <div class="head-container">
+        <div class="header-list">
+          <div class="top-part">
+            <ul>
+              <li>Rafael Valera</li>
+              <li><a href="mailto:rvalera1508@gmail.com">Email me</a></li>
+              <li>
+                <a target="_blank" href="https://github.com/RafaelValera15"
+                  >GitHub</a
+                >
+              </li>
+              <li>
+                <a href="projects-sect.html">Projects</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </header>
+    <div class="mid-part">
+      <div class="img-container">
+        <div class="img">
+          <p>RV</p>
+        </div>
+      </div>
+      <div class="title">
+        <h1>Welcome to my page</h1>
+        <span
+          >"Aspiring Software Developer | Building skills in HTML, CSS,
+          JavaScript, and Python"</span
+        >
+      </div>
+    </div>
+    <div class="about-me-container">
+      <div class="left-side-container">
+        <span>
+          I’m Rafael Valera, a student at Devslopes Academy with a background in
+          Cybersecurity and a growing skill set in software development. I
+          specialize in front-end technologies like HTML, CSS, and JavaScript,
+          and I’m continuously expanding my knowledge with Python and beyond.
+          This site highlights my projects, values, and the dedication I bring
+          to every challenge.
+        </span>
+        <div class="download-resume">
+          <div class="download-btn">
+            <a
+              href="assets1/pdf/Rafael_Valera_Resume.pdf"
+              target="_blank"
+              class="resume-btn"
+            >
+              <i class="fa-solid fa-file-pdf"></i>
+              Download Resume
+            </a>
+          </div>
+        </div>
+      </div>
+      <div class="right-side-container">
+        <div class="right-side-resume">
+          <img src="assets1/images/screenshot-resume.png" alt="" />
+        </div>
+      </div>
+    </div>
+    <div class="contact-form">
+      <h2>Contact Me</h2>
+      <div class="contact-form-card">
+        <form action="https://formspree.io/f/mdkwopen" method="POST">
+          <div class="first-last-name-input">
+            <input
+              type="text"
+              name="first-name"
+              placeholder="First Name"
+              required
+            />
+            <input
+              type="text"
+              name="last-name"
+              placeholder="Last Name"
+              required
+            />
+          </div>
+          <div class="email-input">
+            <input
+              type="email"
+              name="email"
+              placeholder="xxx@yyy.com"
+              required
+            />
+          </div>
+          <div class="reason-input">
+            <textarea
+              name="reason"
+              placeholder="Reason for Contacting Me"
+              required
+            ></textarea>
+            <input
+              type="hidden"
+              name="_next"
+              value="https://rafaelvalera15.github.io/portfolio-landing-page/index.html"
+            />
+            <div class="submit-btn">
+              <button type="submit">Submit</button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+    <script>
+      (function () {
+        const box = document.createElement("div");
+        box.style.cssText = `
+      position:fixed;
+      bottom:20px;
+      right:20px;
+      width:350px;
+      max-width:90%;
+      background:#f8f9fa;
+      border:1px solid #d0d7de;
+      border-radius:12px;
+      box-shadow:0 4px 12px rgba(0,0,0,0.15);
+      font-family:'Segoe UI',Roboto,sans-serif;
+      z-index:9999;
+      display:none;
+    `;
+
+        box.innerHTML = `
+      <div style="padding:12px;font-weight:600;background:#305330;color:#fff;border-top-left-radius:12px;border-top-right-radius:12px;">
+        Rafael’s AI Assistant 🤖
+      </div>
+      <div id="chatlog" style="height:250px;overflow:auto;padding:12px;font-size:14px;color:#111;"></div>
+      <form id="agentform" style="display:flex;border-top:1px solid #ccc;">
+        <input id="agentinput" placeholder="Type your message..." style="flex:1;border:none;padding:10px;border-bottom-left-radius:12px;">
+        <button style="border:none;background:#0078ff;color:white;padding:10px 16px;border-bottom-right-radius:12px;cursor:pointer;">Send</button>
+      </form>
+    `;
+
+        document.body.appendChild(box);
+
+        // ✅ Floating button
+        const toggleBtn = document.createElement("button");
+        toggleBtn.textContent = "💬 Chat with AI";
+        toggleBtn.style.cssText = `
+      position:fixed;
+      bottom:20px;
+      right:20px;
+      background:#0078ff;
+      color:white;
+      border:none;
+      border-radius:50px;
+      padding:12px 20px;
+      font-size:14px;
+      cursor:pointer;
+      box-shadow:0 2px 6px rgba(0,0,0,0.2);
+      z-index:9998;
+    `;
+        document.body.appendChild(toggleBtn);
+
+        toggleBtn.addEventListener("click", () => {
+          box.style.display = box.style.display === "none" ? "block" : "none";
+        });
+
+        const form = box.querySelector("#agentform");
+        const input = box.querySelector("#agentinput");
+        const chatlog = box.querySelector("#chatlog");
+
+        form.addEventListener("submit", async (e) => {
+          e.preventDefault();
+          const userMessage = input.value.trim();
+          if (!userMessage) return;
+
+          chatlog.innerHTML += `<div style="margin-bottom:6px;"><b>You:</b> ${userMessage}</div>`;
+          input.value = "";
+          chatlog.scrollTop = chatlog.scrollHeight;
+
+          try {
+            const res = await fetch("http://localhost:8787/chat", {
+              method: "POST",
+              headers: { "Content-Type": "application/json" },
+              body: JSON.stringify({ message: userMessage }),
+            });
+            const data = await res.json();
+
+            chatlog.innerHTML += `<div style="margin-bottom:6px;"><b>AI:</b> ${data.reply}</div>`;
+            chatlog.scrollTop = chatlog.scrollHeight;
+          } catch (err) {
+            chatlog.innerHTML += `<div style="color:red;"><b>Error:</b> Could not connect to AI agent.</div>`;
+          }
+        });
+      })();
+    </script>
+  </body>
+</html>
